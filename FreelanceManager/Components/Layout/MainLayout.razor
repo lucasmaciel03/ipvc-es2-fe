@@ -1,4 +1,6 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
+@using Microsoft.JSInterop
+@inject IJSRuntime JSRuntime
 
 <div class="page">
     <div class="sidebar">
@@ -21,3 +23,15 @@
     <a href="." class="reload">Reload</a>
     <span class="dismiss">🗙</span>
 </div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Load Syncfusion theme
+            await JSRuntime.InvokeVoidAsync("loadSyncfusionTheme", "bootstrap5");
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}

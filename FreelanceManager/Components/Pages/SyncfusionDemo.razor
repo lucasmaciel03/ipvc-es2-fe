@@ -1,0 +1,74 @@
+@page "/syncfusion-demo"
+
+<PageTitle>Syncfusion Demo</PageTitle>
+
+<h1>Syncfusion Components Demo</h1>
+
+<p>This page demonstrates that Syncfusion is properly configured in your project without altering the existing design.</p>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Syncfusion Button
+            </div>
+            <div class="card-body">
+                <SfButton CssClass="e-primary">Primary Button</SfButton>
+                <SfButton CssClass="e-success">Success Button</SfButton>
+                <SfButton CssClass="e-info">Info Button</SfButton>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Syncfusion DatePicker
+            </div>
+            <div class="card-body">
+                <SfDatePicker TValue="DateTime?" Placeholder="Choose a date"></SfDatePicker>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                Syncfusion Grid
+            </div>
+            <div class="card-body">
+                <SfGrid DataSource="@Employees" AllowPaging="true" Width="100%">
+                    <GridPageSettings PageSize="5"></GridPageSettings>
+                    <GridColumns>
+                        <GridColumn Field=@nameof(Employee.EmployeeId) HeaderText="ID" TextAlign="TextAlign.Right" Width="120"></GridColumn>
+                        <GridColumn Field=@nameof(Employee.Name) HeaderText="Name" Width="150"></GridColumn>
+                        <GridColumn Field=@nameof(Employee.Title) HeaderText="Designation" Width="150"></GridColumn>
+                        <GridColumn Field=@nameof(Employee.HireDate) HeaderText="Hire Date" Format="d" Type="ColumnType.Date" Width="130"></GridColumn>
+                    </GridColumns>
+                </SfGrid>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    public class Employee
+    {
+        public int EmployeeId { get; set; }
+        public required string Name { get; set; }
+        public required string Title { get; set; }
+        public DateTime HireDate { get; set; }
+    }
+
+    private List<Employee> Employees = new List<Employee>
+    {
+        new Employee { EmployeeId = 1, Name = "John Doe", Title = "Developer", HireDate = new DateTime(2021, 1, 15) },
+        new Employee { EmployeeId = 2, Name = "Jane Smith", Title = "Designer", HireDate = new DateTime(2021, 3, 10) },
+        new Employee { EmployeeId = 3, Name = "Robert Johnson", Title = "Manager", HireDate = new DateTime(2020, 11, 5) },
+        new Employee { EmployeeId = 4, Name = "Emily Davis", Title = "Tester", HireDate = new DateTime(2022, 2, 20) },
+        new Employee { EmployeeId = 5, Name = "Michael Wilson", Title = "Developer", HireDate = new DateTime(2021, 7, 8) },
+        new Employee { EmployeeId = 6, Name = "Sarah Brown", Title = "Designer", HireDate = new DateTime(2022, 4, 12) }
+    };
+}

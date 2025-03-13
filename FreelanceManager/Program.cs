@@ -1,10 +1,14 @@
 using FreelanceManager.Components;
+using Syncfusion.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// Register Syncfusion services with explicit options parameter
+builder.Services.AddSyncfusionBlazor(options => { });
 
 var app = builder.Build();
 
