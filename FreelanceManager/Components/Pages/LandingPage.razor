@@ -1,0 +1,110 @@
+@page "/"
+@using FreelanceManager.Components.Layout
+@using Syncfusion.Blazor
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Cards
+@layout EmptyLayout
+
+<PageTitle>Landing Page</PageTitle>
+
+<!-- O contêiner "d-flex flex-column min-vh-100" faz a página ocupar a altura total da viewport -->
+<div class="d-flex flex-column min-vh-100">
+    <!-- Cabeçalho (opcional) -->
+        <header class="d-flex bg-primary justify-content-between align-items-center p-4 shadow-sm">
+            <h4 class="text-center font-bold text-white"> FreelanceManager</h4>
+            <div class="d-flex justify-content-between align-items-center gap-3">
+                <button class="btn btn-light" @onclick="Login">Login</button>
+                <button class="btn btn-link text-white" @onclick="Signup">Sign Up</button>
+            </div>
+        </header>
+
+    <!-- Hero Section with text "Find & Hire Freelancers" -->
+    <section class="hero bg-primary text-white text-left py-5 h-100"> 
+        <div class="container d-flex h-100 align-items-center justify-content-between">
+            <div>
+                <h1 class="display-3 fw-bold">Find & Hire Freelancers</h1>
+                <p class="lead">Trabalha com os melhores freelancers do mundo na nossa plataforma segura e eficiente.</p>
+            </div>
+            <div>
+                <img src="images/image.svg" alt="hero image" class="img-fluid">
+            </div>
+        </div>
+    </section>
+
+    <!-- Conteúdo principal (cards, etc.) -->
+    <main class="flex-grow-1">
+        <div class="container my-5">
+            <div class="row">
+                <!-- Título -->
+                <div class="col-12">
+                    <h2 class="text-center mb-4">Funcionalidades</h2>
+                </div>
+
+                @foreach (var card in CardInfos)
+                {
+                    <div class="col-md-4 mb-4">
+                        <SfCard CssClass="e-card shadow-sm h-100 p-4">
+                            <CardHeader>
+                                <div class="e-card-title">@card.Title</div>
+                            </CardHeader>
+                            <CardContent>
+                                <p>@card.Text</p>
+                            </CardContent>
+                            <CardFooter>
+                                <SfButton CssClass="e-primary" OnClick="@(() => Navigation.NavigateTo(card.Route))">
+                                    @card.ButtonText
+                                </SfButton>
+                            </CardFooter>
+                        </SfCard>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                @foreach (var card in CardInfos)
+                {
+                    <div class="col-md-4 mb-4">
+                        <SfCard CssClass="e-card shadow-sm h-100 p-4">
+                            <CardHeader>
+                                <div class="e-card-title">@card.Title</div>
+                            </CardHeader>
+                            <CardContent>
+                                <p>@card.Text</p>
+                            </CardContent>
+                            <CardFooter>
+                                <SfButton CssClass="e-primary" OnClick="@(() => Navigation.NavigateTo(card.Route))">
+                                    @card.ButtonText
+                                </SfButton>
+                            </CardFooter>
+                        </SfCard>
+                    </div>
+                }
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé (footer) -->
+    <footer class="bg-light text-center p-3">
+        <small>&copy; @DateTime.Now.Year - FreelanceManager</small>
+    </footer>
+</div>
+
+@code {
+    [Inject] private NavigationManager Navigation { get; set; } = default!;
+
+    private void Login() => Navigation.NavigateTo("/login");
+    private void Signup() => Navigation.NavigateTo("/signup");
+    public class CardInfo
+    {
+        public string Title { get; set; } = string.Empty;
+        public string Text { get; set; } = string.Empty;
+        public string ButtonText { get; set; } = string.Empty;
+        public string Route { get; set; } = string.Empty;
+    }
+
+    private List<CardInfo> CardInfos = new List<CardInfo> {
+        new CardInfo { Title = "Título do Card 1", Text = "Texto de exemplo no card 1.", ButtonText = "Ação", Route = "/card1" },
+        new CardInfo { Title = "Título do Card 2", Text = "Texto de exemplo no card 2.", ButtonText = "Ação", Route = "/card2" },
+        new CardInfo { Title = "Título do Card 3", Text = "Texto de exemplo no card 3.", ButtonText = "Ação", Route = "/card3" }
+        // Adicione mais cards conforme necessário
+    };
+}
