@@ -1,5 +1,14 @@
 using FreelanceManager.Components;
+using DotNetEnv;
 using Syncfusion.Blazor;
+using Syncfusion.Licensing;
+
+// Load environment variables from .env file
+Env.Load();
+
+// Register Syncfusion license
+string syncfusionLicenseKey = Environment.GetEnvironmentVariable("SYNCFUSION_LICENSE_KEY") ?? "";
+SyncfusionLicenseProvider.RegisterLicense(syncfusionLicenseKey);
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +16,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// Register Syncfusion services with explicit options parameter
-builder.Services.AddSyncfusionBlazor(options => { });
+// Register Syncfusion services
+builder.Services.AddSyncfusionBlazor();
 
 var app = builder.Build();
 
@@ -22,10 +31,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
+app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
