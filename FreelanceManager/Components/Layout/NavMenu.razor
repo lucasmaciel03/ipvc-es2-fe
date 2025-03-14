@@ -1,35 +1,178 @@
-<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">FreelanceManager</a>
+@using Syncfusion.Blazor.Navigations
+@inject NavigationManager NavigationManager
+
+<div class="sidebar-container">
+    <div class="sidebar-header">
+        <a class="app-logo" href=""> 
+            <img src="images/logo2.svg" alt="FreelanceManager Logo" class="logo-image" />
+            <span class="app-title">FreelanceManager</span>
+        </a>
+    </div>
+
+    <div class="search-container">
+        <div class="search-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" placeholder="Search" class="search-input" />
+        </div>
+    </div>
+
+    <div class="menu-container">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a class="nav-link @GetActiveClass("")" href="">
+                    <div class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    </div>
+                    <span>Overview</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <div class="nav-link-container">
+                    <a class="nav-link @GetActiveClass("counter")" href="counter">
+                        <div class="menu-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <span>Projects</span>
+                    </a>
+                    <button type="button" class="submenu-toggle" @onclick="ToggleProjectsMenu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="@(showProjectsSubmenu ? "rotate-180" : "")"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                </div>
+                @if (showProjectsSubmenu)
+                {
+                    <ul class="submenu open">
+                        <li class="submenu-item">
+                            <a class="submenu-link @GetActiveClass("counter/project1")" href="counter/project1">
+                                <div class="submenu-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                                </div>
+                                <span>Website Redesign</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item">
+                            <a class="submenu-link @GetActiveClass("counter/project2")" href="counter/project2">
+                                <div class="submenu-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                                </div>
+                                <span>Mobile App</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item">
+                            <a class="submenu-link @GetActiveClass("counter/project3")" href="counter/project3">
+                                <div class="submenu-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                                </div>
+                                <span>E-commerce Platform</span>
+                            </a>
+                        </li>
+                    </ul>
+                }
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @GetActiveClass("syncfusion-demo")" href="syncfusion-demo">
+                    <div class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <span>Members</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @GetActiveClass("messages")" href="messages">
+                    <div class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    </div>
+                    <span>Messages</span>
+                    <span class="notification-badge">12</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @GetActiveClass("notifications")" href="notifications">
+                    <div class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    </div>
+                    <span>Notifications</span>
+                    <span class="notification-badge">6</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @GetActiveClass("settings")" href="settings">
+                    <div class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="projects-summary">
+        <div class="folder-illustration">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" stroke="#888" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="projects-count-container">
+            <div class="summary-text">Projects</div>
+            <div class="projects-count">12</div>
+        </div>
+        <button class="new-button">NEW <span>+</span></button>
     </div>
 </div>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="syncfusion-demo">
-                <span class="bi bi-grid-fill-nav-menu" aria-hidden="true"></span> Syncfusion Demo
-            </NavLink>
-        </div>
-    </nav>
+<div class="content">
+    <!-- Aqui vai o conteúdo principal da página -->
 </div>
+
+@code {
+    private bool showProjectsSubmenu = false;
+    
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += OnLocationChanged;
+        
+        // Auto-expand submenu if a child item is active
+        var currentPath = NavigationManager.ToBaseRelativePath(NavigationManager.Uri).TrimEnd('/');
+        if (currentPath.StartsWith("counter/"))
+        {
+            showProjectsSubmenu = true;
+        }
+    }
+    
+    private void ToggleProjectsMenu()
+    {
+        showProjectsSubmenu = !showProjectsSubmenu;
+        StateHasChanged();
+    }
+    
+    private string GetActiveClass(string href)
+    {
+        var currentUri = NavigationManager.Uri;
+        var relativePath = NavigationManager.ToBaseRelativePath(currentUri).TrimEnd('/');
+        
+        // For the home page
+        if (string.IsNullOrEmpty(href) && string.IsNullOrEmpty(relativePath))
+        {
+            return "active";
+        }
+        
+        // For other pages - exact match only
+        return relativePath.Equals(href, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+    }
+    
+    private void OnLocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        // Auto-expand submenu if a child item is active
+        var currentPath = NavigationManager.ToBaseRelativePath(e.Location).TrimEnd('/');
+        if (currentPath.StartsWith("counter/"))
+        {
+            showProjectsSubmenu = true;
+        }
+        
+        StateHasChanged();
+    }
+    
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+}
