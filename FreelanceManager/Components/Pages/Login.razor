@@ -1,0 +1,76 @@
+@page "/login"
+@using System.Net.Http.Json
+@layout EmptyLayout
+@rendermode InteractiveServer
+
+<PageTitle>Login</PageTitle>
+
+<div class="login-container">
+    <SfCard class="login-card">
+        <SfCardHeader>
+            <div class="login-header">
+                <SfAvatar class="e-avatar-circle" Content="FM"></SfAvatar>
+                <h3>Welcome Back!</h3>
+                <p>Please log in to continue</p>
+            </div>
+        </SfCardHeader>
+        <SfCardContent>
+            <div class="login-box">
+                <SfTextBox Placeholder="Enter your username" @bind-Value="Username" CssClass="e-outline">
+                    <SfTextBoxPrefix>
+                        <span class="e-icons e-user"></span>
+                    </SfTextBoxPrefix>
+                </SfTextBox>
+                <SfTextBox Placeholder="Enter your password" @bind-Value="Password" CssClass="e-outline" Type="InputType.Password">
+                    <SfTextBoxPrefix>
+                        <span class="e-icons e-lock"></span>
+                    </SfTextBoxPrefix>
+                </SfTextBox>
+                <SfButton Type="ButtonType.Button" CssClass="e-primary login-button" @onclick="HandleLogin">Login</SfButton>
+
+                @if (LoginError)
+                {
+                    <p class="text-danger">@ErrorMessage</p>
+                }
+            </div>
+        </SfCardContent>
+        <SfCardFooter>
+            <div class="login-footer">
+                <p>Don't have an account? <a @onclick="ShowSignupPopup" @onclick:preventDefault>Sign up</a></p>
+                <p><a href="/forgot-password">Forgot your password?</a></p>
+            </div>
+        </SfCardFooter>
+    </SfCard>
+</div>
+
+<SfDialog @bind-Visible="IsSignupPopupVisible" Width="500px" Header="Create an Account" ShowCloseIcon="true">
+    <div class="signup-form">
+        <h4 class="text-center">Join Us Today!</h4>
+        <p class="text-center">Fill in the details below to create your account.</p>
+        <SfTextBox Placeholder="Enter your email" @bind-Value="SignupEmail" CssClass="e-outline">
+            <SfTextBoxPrefix>
+                <span class="e-icons e-mail"></span>
+            </SfTextBoxPrefix>
+        </SfTextBox>
+        <SfTextBox Placeholder="Enter your username" @bind-Value="SignupUsername" CssClass="e-outline">
+            <SfTextBoxPrefix>
+                <span class="e-icons e-user"></span>
+            </SfTextBoxPrefix>
+        </SfTextBox>
+        <SfTextBox Placeholder="Enter your full name" @bind-Value="SignupFullName" CssClass="e-outline">
+            <SfTextBoxPrefix>
+                <span class="e-icons e-name"></span>
+            </SfTextBoxPrefix>
+        </SfTextBox>
+        <SfTextBox Placeholder="Enter your phone number" @bind-Value="SignupPhoneNumber" CssClass="e-outline" Type="InputType.Tel">
+            <SfTextBoxPrefix>
+                <span class="e-icons e-phone"></span>
+            </SfTextBoxPrefix>
+        </SfTextBox>
+        <SfButton Type="ButtonType.Button" CssClass="e-primary signup-button" @onclick="HandleSignup">Sign Up</SfButton>
+        @if (SignupError)
+        {
+            <p class="text-danger text-center">@SignupErrorMessage</p>
+        }
+    </div>
+</SfDialog>
