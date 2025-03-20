@@ -78,6 +78,7 @@ private async Task HandleSignup()
             UserName = SignupUsername,
             FullName = SignupFullName,
             PhoneNumber = SignupPhoneNumber,
+            IsActive = true,
 
         };
 
