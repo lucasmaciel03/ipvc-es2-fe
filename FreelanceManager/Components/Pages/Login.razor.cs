@@ -5,7 +5,7 @@ namespace FreelanceManager.Components.Pages
 {
     public partial class Login
     {
-        private string Username { get; set; } = string.Empty;
+        private string Email { get; set; } = string.Empty;
         private string Password { get; set; } = string.Empty;
         private bool LoginError { get; set; } = false;
         private string ErrorMessage { get; set; } = string.Empty;
@@ -23,8 +23,16 @@ namespace FreelanceManager.Components.Pages
         {
             try
             {
-                var payload = new { Username, Password };
-                var response = await Http.PostAsJsonAsync("https://localhost:7158/api/Authentication/SignIn", payload);
+                var payload = new { Email, Password }; // Use Email instead of Username
+                Console.WriteLine($"Sending Login Payload: {System.Text.Json.JsonSerializer.Serialize(payload)}");
+                var response = new HttpResponseMessage();
+                try{
+                    response = await Http.PostAsJsonAsync("https://localhost:7158/api/Authentication/SignIn", payload);
+                    }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex}");
+                }
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -34,7 +42,7 @@ namespace FreelanceManager.Components.Pages
                 else
                 {
                     LoginError = true;
-                    ErrorMessage = "Invalid username or password.";
+                    ErrorMessage = "Invalid email or password.";
                 }
             }
             catch (Exception ex)
