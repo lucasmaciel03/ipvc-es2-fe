@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 
-namespace FreelanceManager.Components.Pages
+namespace FreelanceManager.Components.Pages.Public.Signin
 {
     public partial class Login
     {
@@ -26,9 +26,10 @@ namespace FreelanceManager.Components.Pages
                 var payload = new { Email, Password }; // Use Email instead of Username
                 Console.WriteLine($"Sending Login Payload: {System.Text.Json.JsonSerializer.Serialize(payload)}");
                 var response = new HttpResponseMessage();
-                try{
+                try
+                {
                     response = await Http.PostAsJsonAsync("https://localhost:7158/api/Authentication/SignIn", payload);
-                    }
+                }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Error: {ex}");
@@ -68,42 +69,42 @@ namespace FreelanceManager.Components.Pages
             public bool IsActive { get; set; }
         }
 
-private async Task HandleSignup()
-{
-    try
-    {
-        var model = new ApplicationUserModel
+        private async Task HandleSignup()
         {
-            Email = SignupEmail,
-            UserName = SignupUsername,
-            FullName = SignupFullName,
-            PhoneNumber = SignupPhoneNumber,
-            IsActive = true,
+            try
+            {
+                var model = new ApplicationUserModel
+                {
+                    Email = SignupEmail,
+                    UserName = SignupUsername,
+                    FullName = SignupFullName,
+                    PhoneNumber = SignupPhoneNumber,
+                    IsActive = true,
 
-        };
+                };
 
-        Console.WriteLine($"Sending Payload: {System.Text.Json.JsonSerializer.Serialize(model)}");
-        var response = await Http.PostAsJsonAsync("https://localhost:7158/api/ApplicationUsers/Create", model);
+                Console.WriteLine($"Sending Payload: {System.Text.Json.JsonSerializer.Serialize(model)}");
+                var response = await Http.PostAsJsonAsync("https://localhost:7158/api/ApplicationUsers/Create", model);
 
-        if (response.IsSuccessStatusCode)
-        {
-            IsSignupPopupVisible = false;
-            SignupError = false;
+                if (response.IsSuccessStatusCode)
+                {
+                    IsSignupPopupVisible = false;
+                    SignupError = false;
+                }
+                else
+                {
+                    SignupError = true;
+                    SignupErrorMessage = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"API detailed error: {SignupErrorMessage}");
+                }
+            }
+            catch (Exception ex)
+            {
+                SignupError = true;
+                SignupErrorMessage = $"An error occurred: {ex.Message}";
+                Console.WriteLine(SignupErrorMessage);
+            }
         }
-        else
-        {
-            SignupError = true;
-            SignupErrorMessage = await response.Content.ReadAsStringAsync();
-            Console.WriteLine($"API detailed error: {SignupErrorMessage}");
-        }
-    }
-    catch (Exception ex)
-    {
-        SignupError = true;
-        SignupErrorMessage = $"An error occurred: {ex.Message}";
-        Console.WriteLine(SignupErrorMessage);
-    }
-}
 
         [Inject]
         private HttpClient Http { get; set; } = default!;

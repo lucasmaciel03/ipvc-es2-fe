@@ -1,4 +1,4 @@
-@page "/login"
+@page "/signin"
 @using System.Net.Http.Json
 @layout EmptyLayout
 @rendermode InteractiveServer
@@ -21,12 +21,14 @@
                         <span class="e-icons e-mail"></span>
                     </SfTextBoxPrefix>
                 </SfTextBox>
-                <SfTextBox Placeholder="Enter your password" @bind-Value="Password" CssClass="e-outline" Type="InputType.Password">
+                <SfTextBox Placeholder="Enter your password" @bind-Value="Password" CssClass="e-outline"
+                    Type="InputType.Password">
                     <SfTextBoxPrefix>
                         <span class="e-icons e-lock"></span>
                     </SfTextBoxPrefix>
                 </SfTextBox>
-                <SfButton Type="ButtonType.Button" CssClass="e-primary login-button" @onclick="HandleLogin">Login</SfButton>
+                <SfButton Type="ButtonType.Button" CssClass="e-primary login-button" @onclick="HandleLogin">Login
+                </SfButton>
 
                 @if (LoginError)
                 {
@@ -62,7 +64,8 @@
                 <span class="e-icons e-name"></span>
             </SfTextBoxPrefix>
         </SfTextBox>
-        <SfTextBox Placeholder="Enter your phone number" @bind-Value="SignupPhoneNumber" CssClass="e-outline" Type="InputType.Tel">
+        <SfTextBox Placeholder="Enter your phone number" @bind-Value="SignupPhoneNumber" CssClass="e-outline"
+            Type="InputType.Tel">
             <SfTextBoxPrefix>
                 <span class="e-icons e-phone"></span>
             </SfTextBoxPrefix>

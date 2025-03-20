@@ -1,0 +1,45 @@
+@page "/signup"
+@using System.Net.Http.Json
+@using FreelanceManager.Shared
+@layout EmptyLayout
+@rendermode InteractiveServer
+
+<PageTitle>SignUp</PageTitle>
+
+<div class="login-container">
+    <SfCard class="login-card">
+        <SfCardHeader>
+            <div class="login-header">
+                <h2>Freelance Manager</h2>
+                <h3>Join In!</h3>
+            </div>
+        </SfCardHeader>
+        <SfCardContent>
+            <EditForm Model="@registration" OnValidSubmit="CreateApplicationUser">
+                <DataAnnotationsValidator />
+                <CustomFormValidator @ref="customFormValidator" />
+
+                <div class="login-box">
+                    <SfTextBox Placeholder="Username" @bind-Value="registration.Username"
+                        FloatLabelType="FloatLabelType.Always" CssClass="e-outline"> </SfTextBox>
+                    <SfTextBox Placeholder="Fullname" @bind-Value="registration.FullName"
+                        FloatLabelType="FloatLabelType.Always" CssClass="e-outline"> </SfTextBox>
+                    <SfTextBox Placeholder="Email" @bind-Value="registration.Email"
+                        FloatLabelType="FloatLabelType.Always" CssClass="e-outline"> </SfTextBox>
+                    <SfTextBox Placeholder="Password" @bind-Value="registration.Password"
+                        FloatLabelType="FloatLabelType.Always" CssClass="e-outline" Type="InputType.Password">
+                    </SfTextBox>
+                    <SfTextBox Placeholder="Confirm Password" @bind-Value="registration.ConfPassword"
+                        FloatLabelType="FloatLabelType.Always" CssClass="e-outline" Type="InputType.Password">
+                    </SfTextBox>
+                    <SfButton Type="submit" CssClass="e-primary login-button">Sign in</SfButton>
+                </div>
+            </EditForm>
+        </SfCardContent>
+        <SfCardFooter>
+            <div class="login-footer">
+                <p>Already have an account? <a href="/login">SignIn</a></p>
+            </div>
+        </SfCardFooter>
+    </SfCard>
+</div>

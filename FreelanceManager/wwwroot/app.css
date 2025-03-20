@@ -1,3 +1,11 @@
+:root {
+    --md-sys-color-primary: #FF5733 !important; /* Define a cor primária */
+    --md-sys-color-primary-container: #E64A19 !important; /* Cor do container primário */
+    --md-sys-color-on-primary: #FFFFFF !important; /* Texto sobre cor primária */
+    --md-sys-color-secondary: #4CAF50 !important; /* Cor secundária */
+    --md-sys-color-tertiary: #2196F3 !important; /* Cor terciária */
+  }
+  
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
