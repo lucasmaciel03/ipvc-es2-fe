@@ -8,204 +8,6 @@
 
 
 <PageTitle>Freelance Manager</PageTitle>
-<style>
-    ::placeholder {
-        color: rgba(255, 255, 255, 0.5) !important; /* Tom mais claro */
-        opacity: 1;
-    }
-    /* Alinhar melhor o botão no input-group */
-    .input-group {
-        display: flex;
-        align-items: center;
-    }
-
-    .input-group input {
-        padding-right: 50px; /* Para garantir espaço ao botão */
-        color: #fff; /* Texto branco para melhor contraste */
-    }
-
-    .input-group .sf-button {
-        margin-left: -50px; /* Ajuste para alinhar bem com o input */
-        z-index: 10; /* Para ficar sobre o input */
-    }
-    /* Estilização dos cards */
-    .card-custom {
-        border-radius: 15px;
-        padding: 30px;
-        color: #e0e0e0;
-        min-height: 200px;
-        text-align: left;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        border: none;
-    }
-
-    .card-custom:hover {
-        transform: translateY(-5px);
-        box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.1);
-    }
-
-    .gradient-dark {
-        background: linear-gradient(135deg, #252525, #312f41);
-    }
-
-    /* Ícones estilizados */
-    .icon-container {
-        font-size: 40px;
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 20px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        margin-bottom: 20px;
-    }
-
-    .icon-size{
-        font-size: 24px;
-    }
-
-    /* Links personalizados */
-    .link-custom {
-        color: #c3a6ff;
-        text-decoration: none;
-    }
-
-    .link-custom:hover {
-        text-decoration: underline;
-        color: #d1b2ff;
-    }
-    .bg-purple{
-        color: #6650a4;
-    }
-
-    /* Container dos cards */
-    .talent-card {
-        background: linear-gradient(135deg, #252525, #312f41);
-        padding: 20px;
-        border-radius: 15px;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        min-height: 100%;
-    }
-
-    /* Efeito ao passar o mouse */
-    .talent-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.1);
-    }
-
-    /* Avatar */
-    .avatar {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 3px solid #d1b2ff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto;
-    }
-
-    .avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    /* Texto de classificação */
-    .rating {
-        font-size: 14px;
-        color: #c3a6ff;
-    }
-    /* Background transparente para o header */
-    header.sticky-top {
-        background: rgba(29, 29, 28, 0.4); /* Fundo semi-transparente */
-        backdrop-filter: blur(10px); /* Efeito vidro */
-        -webkit-backdrop-filter: blur(10px); /* Para compatibilidade com Safari */
-        transition: background 0.3s ease-in-out;
-    }
-    /* FAQ - Seção */
-.faq-accordion {
-    background: transparent;
-}
-
-/* Itens do Accordion */
-.accordion-item {
-    background-color: #252525; /* Cor base escura */
-    border: none;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    overflow: hidden;
-    border:none;
-}
-
-/* Cabeçalho do Accordion */
-.accordion-header {
-    border-radius: 10px;
-    border:none;
-}
-
-/* Botão do Accordion */
-.accordion-button {
-    background: #252525; /* Fundo escuro padrão */
-    color: #fff;
-    font-weight: 600;
-    padding: 15px 20px;
-    box-shadow: none;
-    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
-    border:none;
-}
-
-/* Hover e Focus */
-.accordion-button:hover,
-.accordion-button:focus {
-    background: #202020; /* Efeito hover */
-    color: #ffffff;
-}
-
-/* Estilo quando o item está aberto */
-.accordion-button:not(.collapsed) {
-    background: #252525;
-    color: #fff;
-    font-weight: bold;
-}
-/* Ícone de seta */
-.accordion-button::after {
-    background-color: transparent;
-    width: 30px;
-    height: 30px;
-    border:1px solid #6c757d;
-    color: #fff;
-    border-radius: 50%;
-    font-size: 16px;
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Para o ícone quando aberto */
-.accordion-button:not(.collapsed)::after {
-    background-color: #6650a4; /* Fundo roxo quando aberto */
-    content: "\f077";
-    font-family: "Font Awesome 5 Free";
-    background-image: none;
-    color: #1d1d1c;
-    transform: rotate(180deg);  /* Garantir centralização mesmo quando girado */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border:none;
-}
-
-/* Corpo do Accordion */
-.accordion-body {
-    background: #252525;
-    color: #ccc;
-    padding: 15px 20px;
-    font-size:14px
-}
-
-
-</style>
 <div class="d-flex flex-column min-vh-100 text-white" style="background-color:#1d1d1c">
 
     <header id="inicio" class=" sticky-top">
@@ -242,8 +44,16 @@
 
                 <!-- Botões centralizados abaixo do menu -->
                 <div class="d-flex justify-content-center gap-2 mt-2">
-                    <SfButton CssClass="e-primary e-outline text-white rounded-pill" @onclick="Signup">Registar</SfButton>
-                    <SfButton CssClass="e-primary text-white rounded-pill border-0" @onclick="Signup">Login</SfButton>
+                    <SfButton CssClass="e-primary e-outline text-white rounded-pill">
+                        <a href="/signup" class="text-decoration-none text-white">
+                            Registar
+                        </a>
+                    </SfButton>
+                    <SfButton CssClass="e-primary text-white rounded-pill border-0">
+                         <a href="/signin" class="text-decoration-none text-white">
+                            Login
+                        </a>
+                    </SfButton>
                 </div>
             </div>
         </nav>
@@ -261,8 +71,10 @@
                 <p class="lead text-secondary fw-semibold" style="font-size: 16px;">
                     Aumente a sua produtividade e racionalize o seu fluxo de trabalho com o FreelanceManager.
                 </p>
-                <SfButton CssClass="e-primary mt-3 e-flat bg-white text-dark rounded-pill py-3 px-4" @onclick="Signup">
-                    Começar Agora
+                <SfButton CssClass="e-primary mt-3 e-flat bg-white text-dark rounded-pill py-3 px-4">
+                    <a href="/signup" class="text-decoration-none text-dark">
+                        Começar Agora
+                    </a>
                 </SfButton>
             </div>
 
@@ -285,7 +97,7 @@
                         </div>
                         <h3 class="fw-bold text-white">Entra num projeto</h3>
                         <p class="text-secondary">Procura e entra em projetos abertos que combinam com as tuas habilidades.</p>
-                        <a href="#" class="link-custom">Explorar projetos</a>
+                        <a href="/signin" class="link-custom">Explorar projetos</a>
                     </div>
                 </div>
             </div>
@@ -299,7 +111,7 @@
                         </div>
                         <h3 class="fw-bold text-white">5000+ Freelancers</h3>
                         <p class="text-secondary">Encontra os melhores talentos para o seu projeto.</p>
-                        <a href="#" class="link-custom">Publicar uma vaga</a>
+                        <a href="/signin" class="link-custom">Publicar uma vaga</a>
                     </div>
                 </div>
             </div>
@@ -313,7 +125,7 @@
                         </div>
                         <h3 class="fw-bold text-white">Transações Seguras</h3>
                         <p class="text-secondary">Pagamentos protegidos para clientes e freelancers.</p>
-                        <a href="#" class="link-custom">Saiba mais</a>
+                        <a href="/signin" class="link-custom">Saiba mais</a>
                     </div>
                 </div>
             </div>
@@ -327,7 +139,7 @@
                         </div>
                         <h3 class="fw-bold text-white">Gestão de Pagamentos</h3>
                         <p class="text-secondary">Acompanhe seus ganhos e levante sempre que precisar.</p>
-                        <a href="#" class="link-custom">Ver saldo</a>
+                        <a href="/signin" class="link-custom">Ver saldo</a>
                     </div>
                 </div>
             </div>
@@ -412,7 +224,11 @@
 
         <!-- Botão "See More" -->
         <div class="text-center mt-5">
-            <SfButton CssClass="e-primary e-outline text-white rounded-pill" @onclick="Signup">Ver Mais</SfButton>
+            <SfButton CssClass="e-primary e-outline text-white rounded-pill">
+                <a href="/signin" class="text-decoration-none text-white">
+                    Ver Mais
+                </a>
+            </SfButton>
         </div>
     </section>
 
@@ -428,7 +244,11 @@
                 <p class="text-secondary" style="max-width: 450px;">
                     Tem Questões? Nós temos as respostas! Explora as nossas questões frequentes para saber mais sobre como FreelanceManager pode aumentar a tua produtividade.
                 </p>
-                <SfButton CssClass="e-primary e-outline text-white rounded-pill">Começar Agora</SfButton>
+                <SfButton CssClass="e-primary e-outline text-white rounded-pill">
+                    <a href="/signup" class="text-decoration-none text-white">
+                        Começar Agora
+                    </a>
+                </SfButton>
             </div>
 
             <!-- Accordion -->
@@ -460,8 +280,10 @@
         <div class="container text-center" style="max-width: 450px;">
             <h2 class="text-white>">Ready to Take Control of Your Workflow?</h2>
             <p class="text-secondary">Streamline your tasks and boost your productivity today.</p>
-            <SfButton CssClass="e-primary mt-3 e-flat bg-white text-dark rounded-pill py-3 px-4" @onclick="Signup">
-                Começar Agora
+            <SfButton CssClass="e-primary mt-3 e-flat bg-white text-dark rounded-pill py-3 px-4">
+                <a href="/signup" class="text-decoration-none text-dark">
+                    Começar Agora
+                </a>
             </SfButton>
         </div>
     </section>
@@ -527,7 +349,7 @@
     [Inject] private NavigationManager Navigation { get; set; } = default!;
 
     private void Signup() => Navigation.NavigateTo("/signup");
-    private void Login() => Navigation.NavigateTo("/login");
+    private void Login() => Navigation.NavigateTo("/signin");
 
     public class FAQ
     {
