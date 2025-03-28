@@ -24,7 +24,6 @@ namespace FreelanceManager.Components.Pages.Public.Signin
             try
             {
                 var payload = new { Email, Password }; // Use Email instead of Username
-                Console.WriteLine($"Sending Login Payload: {System.Text.Json.JsonSerializer.Serialize(payload)}");
                 var response = new HttpResponseMessage();
                 try
                 {
@@ -53,10 +52,6 @@ namespace FreelanceManager.Components.Pages.Public.Signin
             }
         }
 
-        private void ShowSignupPopup()
-        {
-            IsSignupPopupVisible = true;
-        }
 
         public class ApplicationUserModel
         {
@@ -67,43 +62,6 @@ namespace FreelanceManager.Components.Pages.Public.Signin
             public string PhoneNumber { get; set; } = string.Empty;
             public List<string> Roles { get; set; } = new List<string>();
             public bool IsActive { get; set; }
-        }
-
-        private async Task HandleSignup()
-        {
-            try
-            {
-                var model = new ApplicationUserModel
-                {
-                    Email = SignupEmail,
-                    UserName = SignupUsername,
-                    FullName = SignupFullName,
-                    PhoneNumber = SignupPhoneNumber,
-                    IsActive = true,
-
-                };
-
-                Console.WriteLine($"Sending Payload: {System.Text.Json.JsonSerializer.Serialize(model)}");
-                var response = await Http.PostAsJsonAsync("https://localhost:7158/api/ApplicationUsers/Create", model);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    IsSignupPopupVisible = false;
-                    SignupError = false;
-                }
-                else
-                {
-                    SignupError = true;
-                    SignupErrorMessage = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"API detailed error: {SignupErrorMessage}");
-                }
-            }
-            catch (Exception ex)
-            {
-                SignupError = true;
-                SignupErrorMessage = $"An error occurred: {ex.Message}";
-                Console.WriteLine(SignupErrorMessage);
-            }
         }
 
         [Inject]

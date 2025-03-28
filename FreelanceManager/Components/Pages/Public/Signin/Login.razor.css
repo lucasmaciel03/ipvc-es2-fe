@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #6a11cb, #5f62b7);
+    background: #6750A4;
     animation: fadeIn 1s ease-in-out;
     width: 100%;
 }

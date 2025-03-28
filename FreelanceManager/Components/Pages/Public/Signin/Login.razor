@@ -44,36 +44,3 @@
         </SfCardFooter>
     </SfCard>
 </div>
-
-<SfDialog @bind-Visible="IsSignupPopupVisible" Width="500px" Header="Create an Account" ShowCloseIcon="true">
-    <div class="signup-form">
-        <h4 class="text-center">Join Us Today!</h4>
-        <p class="text-center">Fill in the details below to create your account.</p>
-        <SfTextBox Placeholder="Enter your email" @bind-Value="SignupEmail" CssClass="e-outline">
-            <SfTextBoxPrefix>
-                <span class="e-icons e-mail"></span>
-            </SfTextBoxPrefix>
-        </SfTextBox>
-        <SfTextBox Placeholder="Enter your username" @bind-Value="SignupUsername" CssClass="e-outline">
-            <SfTextBoxPrefix>
-                <span class="e-icons e-user"></span>
-            </SfTextBoxPrefix>
-        </SfTextBox>
-        <SfTextBox Placeholder="Enter your full name" @bind-Value="SignupFullName" CssClass="e-outline">
-            <SfTextBoxPrefix>
-                <span class="e-icons e-name"></span>
-            </SfTextBoxPrefix>
-        </SfTextBox>
-        <SfTextBox Placeholder="Enter your phone number" @bind-Value="SignupPhoneNumber" CssClass="e-outline"
-            Type="InputType.Tel">
-            <SfTextBoxPrefix>
-                <span class="e-icons e-phone"></span>
-            </SfTextBoxPrefix>
-        </SfTextBox>
-        <SfButton Type="ButtonType.Button" CssClass="e-primary signup-button" @onclick="HandleSignup">Sign Up</SfButton>
-        @if (SignupError)
-        {
-            <p class="text-danger text-center">@SignupErrorMessage</p>
-        }
-    </div>
-</SfDialog>
